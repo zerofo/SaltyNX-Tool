@@ -64,17 +64,17 @@ int main(int argc, char *argv[])
 		return EXIT_SUCCESS;
 	}
 	
-	DIR* flags_dir = opendir("sdmc:/SaltySD/flags");
-	if (flags_dir == NULL) mkdir("sdmc:/SaltySD/flags", S_IRWXU|S_IRWXG|S_IRWXO);
+	DIR* flags_dir = opendir("sdmc:/switch/SaltySD/flags");
+	if (flags_dir == NULL) mkdir("sdmc:/switch/SaltySD/flags", S_IRWXU|S_IRWXG|S_IRWXO);
 	else closedir(flags_dir);
 	
-	FILE* logflag = fopen("sdmc:/SaltySD/flags/log.flag", "r");
+	FILE* logflag = fopen("sdmc:/switch/SaltySD/flags/log.flag", "r");
 	if (logflag) {
 		isLogging = true;
 		fclose(logflag);
 	}
 	
-	FILE *disable_flag = fopen("sdmc:/SaltySD/flags/disable.flag", "r");
+	FILE *disable_flag = fopen("sdmc:/switch/SaltySD/flags/disable.flag", "r");
 	if (disable_flag) {
 		fclose(disable_flag);
 		isDisabled = true;
@@ -90,11 +90,11 @@ int main(int argc, char *argv[])
 	brls::ListItem* StatusItem = new brls::ToggleListItem("Status", !isDisabled, "Enable/Disable SaltyNX (it doesn't kill process)", "Enabled", "Disabled");
 	StatusItem->getClickEvent()->subscribe([](brls::View* view) {
 		if (isDisabled == true) {
-			remove("sdmc:/SaltySD/flags/disable.flag");
+			remove("sdmc:/switch/SaltySD/flags/disable.flag");
 			isDisabled = false;
 		}
 		else {
-			FILE* disableflag = fopen("sdmc:/SaltySD/flags/disable.flag", "w");
+			FILE* disableflag = fopen("sdmc:/switch/SaltySD/flags/disable.flag", "w");
 			fclose(disableflag);
 			isDisabled = true;
 		}
@@ -106,11 +106,11 @@ int main(int argc, char *argv[])
 	
 	LogItem->getClickEvent()->subscribe([](brls::View* view) {
 		if (isLogging == true) {
-			remove("sdmc:/SaltySD/flags/log.flag");
+			remove("sdmc:/switch/SaltySD/flags/log.flag");
 			isLogging = false;
 		}
 		else {
-			FILE* logflag = fopen("sdmc:/SaltySD/flags/log.flag", "w");
+			FILE* logflag = fopen("sdmc:/switch/SaltySD/flags/log.flag", "w");
 			fclose(logflag);
 			isLogging = true;
 		}

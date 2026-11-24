@@ -2,11 +2,11 @@
 
 #include <cstdio>
 
-#define DISABLE_FLAG "sdmc:/SaltySD/flags/disable.flag"
-#define LOG_FLAG     "sdmc:/SaltySD/flags/log.flag"
-#define BLOCK_FILE_STATS_FLAG "sdmc:/SaltySD/flags/blockfilestats.flag"
-#define NVN_COUNTERS_FLAG     "sdmc:/SaltySD/flags/nvncounters.flag"
-#define NO_LOGO_FLAG          "sdmc:/SaltySD/flags/nologo.flag"
+#define DISABLE_FLAG "sdmc:/switch/SaltySD/flags/disable.flag"
+#define LOG_FLAG     "sdmc:/switch/SaltySD/flags/log.flag"
+#define BLOCK_FILE_STATS_FLAG "sdmc:/switch/SaltySD/flags/blockfilestats.flag"
+#define NVN_COUNTERS_FLAG     "sdmc:/switch/SaltySD/flags/nvncounters.flag"
+#define NO_LOGO_FLAG          "sdmc:/switch/SaltySD/flags/nologo.flag"
 
 static bool flagExists(const char* path)
 {
